@@ -1,0 +1,18 @@
+\begin{table*}[tbp]
+\centering
+\caption{Feature selection accuracy (F1 score, mean $\pm$ std). Best mean F1 in bold. Significance markers for QMI-CFS vs. baseline: $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$. Gray markers indicate baselines significantly better than QMI-CFS.}
+\label{tab:f1}
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lccccc}
+\hline
+\rule{0pt}{12pt}Dataset & QMI-CFS & Boruta & CMI & LASSO & MI \\
+\rule{0pt}{12pt}LLD & $0.651 \pm 0.059$ & $\textcolor{gray}{\mathbf{0.951 \pm 0.066}}^{***}$ & $0.649 \pm 0.154^{***}$ & $0.358 \pm 0.026^{***}$ & $0.600 \pm 0.169^{***}$ \\[2pt]
+\rule{0pt}{12pt}NLC & $0.407 \pm 0.093$ & $\textcolor{gray}{\mathbf{0.597 \pm 0.122}}^{***}$ & $\textcolor{gray}{0.524 \pm 0.147}^{***}$ & $0.333 \pm 0.055^{***}$ & $0.396 \pm 0.187^{***}$ \\[2pt]
+\rule{0pt}{12pt}HDS & $0.226 \pm 0.027$ & $\textcolor{gray}{\mathbf{0.909 \pm 0.086}}^{***}$ & $\textcolor{gray}{0.269 \pm 0.055}^{***}$ & $0.198 \pm 0.068^{***}$ & $0.207 \pm 0.072^{***}$ \\[2pt]
+\rule{0pt}{12pt}CC & $0.636 \pm 0.102$ & $\textcolor{gray}{\mathbf{0.883 \pm 0.087}}^{***}$ & $\textcolor{gray}{0.836 \pm 0.090}^{***}$ & $0.492 \pm 0.031^{***}$ & $0.596 \pm 0.191^{***}$ \\[2pt]
+\rule{0pt}{12pt}WC & $0.298 \pm 0.139$ & $0.204 \pm 0.260^{***}$ & $0.080 \pm 0.144^{***}$ & $\textcolor{gray}{\mathbf{0.369 \pm 0.039}}^{***}$ & $0.147 \pm 0.192^{***}$ \\[2pt]
+\rule{0pt}{12pt}IC & $0.332 \pm 0.133$ & $0.275 \pm 0.137^{***}$ & $\textcolor{gray}{\mathbf{0.425 \pm 0.154}}^{***}$ & $0.275 \pm 0.206^{***}$ & $\textcolor{gray}{0.345 \pm 0.169}^{***}$ \\[2pt]
+\hline
+\end{tabular}
+\end{table*}

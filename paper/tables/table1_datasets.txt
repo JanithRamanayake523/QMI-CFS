@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Dataset characteristics. $n_C$: confounders, $n_I$: instruments, $n_P$: precision variables.}
+\label{tab:datasets}
+\begin{tabular}{lcccccc}
+\hline
+\rule{0pt}{12pt}Dataset & $n$ & $d$ & $n_C$ & $n_I$ & $n_P$ & True ATE \\
+\rule{0pt}{12pt}LLD (Linear Low-Dim) & 500 & 20 & 4 & 4 & 4 & 2.0 \\
+\rule{0pt}{12pt}NLC (Nonlinear Conf.) & 500 & 20 & 4 & 4 & 4 & 1.5 \\
+\rule{0pt}{12pt}HDS (High-Dim Sparse) & 500 & 100 & 5 & 5 & 5 & 1.0 \\
+\rule{0pt}{12pt}CC (Correlated Conf.) & 500 & 20 & 6 & 4 & 4 & 2.0 \\
+\rule{0pt}{12pt}WC (Weak Confounding) & 500 & 15 & 3 & 3 & 3 & 1.0 \\
+\rule{0pt}{12pt}IC (Interacting Conf.) & 500 & 20 & 6 & 0 & 0 & 2.0 \\
+\rule{0pt}{12pt}IHDP (Setting A) & 747 & 25 & 3 & - & - & 4.0 \\
+\hline
+\end{tabular}
+\end{table}

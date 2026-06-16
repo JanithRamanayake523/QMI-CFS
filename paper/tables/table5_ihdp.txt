@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{IHDP Setting A results ($n=747$, true ATE = 4.0). Best mean ATE error and best mean F1 in bold.}
+\label{tab:ihdp}
+\small
+\begin{tabular}{lcccc}
+\hline
+\rule{0pt}{12pt}Method & \multicolumn{1}{l}{F1} & \multicolumn{1}{l}{ATE Error} & Precision & Recall \\\\
+\rule{0pt}{12pt}QMI-CFS & $0.511 \pm 0.056$ & $\mathbf{0.057 \pm 0.047}$ & $0.345 \pm 0.053$ & $1.000 \pm 0.000$ \\
+\rule{0pt}{12pt}Boruta & $0.400 \pm 0.169$ & $0.215 \pm 0.149$ & $0.300 \pm 0.127$ & $0.600 \pm 0.254$ \\
+\rule{0pt}{12pt}CMI & $0.956 \pm 0.115$ & $0.063 \pm 0.053$ & $0.956 \pm 0.115$ & $0.956 \pm 0.115$ \\
+\rule{0pt}{12pt}LASSO & $0.530 \pm 0.160$ & $0.060 \pm 0.048$ & $0.376 \pm 0.150$ & $1.000 \pm 0.000$ \\
+\rule{0pt}{12pt}MI & $0.433 \pm 0.265$ & $0.234 \pm 0.175$ & $0.433 \pm 0.265$ & $0.433 \pm 0.265$ \\
+\rule{0pt}{12pt}All-Features & $0.214 \pm 0.000$ & $0.063 \pm 0.051$ & $0.120 \pm 0.000$ & $1.000 \pm 0.000$ \\
+\hline
+\end{tabular}
+\end{table}

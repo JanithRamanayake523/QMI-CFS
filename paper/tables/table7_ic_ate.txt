@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Interacting Confounders (IC) dataset: ATE error for QMI-CFS with linear vs. nonlinear AIPW, and baseline methods with linear AIPW.}
+\label{tab:ic_ate}
+\begin{tabular}{lc}
+\hline
+\rule{0pt}{12pt}Method & ATE Error \\
+\rule{0pt}{12pt}MI & $2.021 \pm 0.207$ \\
+\rule{0pt}{12pt}CMI & $2.024 \pm 0.211$ \\
+\rule{0pt}{12pt}LASSO & $2.021 \pm 0.217$ \\
+\rule{0pt}{12pt}Boruta & $2.026 \pm 0.208$ \\
+\rule{0pt}{12pt}All-Features & $2.019 \pm 0.213$ \\
+\rule{0pt}{12pt}QMI-CFS (linear AIPW) & $2.027 \pm 0.207$ \\
+\rule{0pt}{12pt}QMI-CFS (nonlinear AIPW) & $1.975 \pm 0.232$ \\
+\hline
+\end{tabular}
+\end{table}
