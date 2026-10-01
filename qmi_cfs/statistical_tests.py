@@ -38,9 +38,10 @@ def holm_bonferroni_correction(p_values: np.ndarray, alpha: float = 0.05) -> Tup
             sorted_pvals[i] * (n - i),
             1.0
         )
-        # Ensure monotonicity
+        # Enforce monotonicity (step-down): an adjusted p-value can never be
+        # smaller than the adjusted p-value of a more significant hypothesis.
         if i > 0:
-            corrected[sorted_idx[i]] = min(
+            corrected[sorted_idx[i]] = max(
                 corrected[sorted_idx[i]],
                 corrected[sorted_idx[i - 1]]
             )

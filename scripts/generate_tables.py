@@ -36,7 +36,7 @@ def generate_table1_datasets():
         ("CC (Correlated Conf.)", 500, 20, 6, 4, 4, 2.0),
         ("WC (Weak Confounding)", 500, 15, 3, 3, 3, 1.0),
         ("IC (Interacting Conf.)", 500, 20, 6, 0, 0, 2.0),
-        ("IHDP (Setting A)", 747, 25, 3, "-", "-", 4.0),
+        ("IHDP-inspired (synthetic)", 747, 25, 3, 2, 2, 4.0),
     ]
     latex = """\\begin{table}[htbp]
 \\centering
@@ -74,7 +74,7 @@ def generate_table2_f1(df_exp1, ttest_df):
     header = ' & '.join(['Dataset'] + method_order)
     latex = f"""\\begin{{table*}}[tbp]
 \\centering
-\\caption{{Feature selection accuracy (F1 score, mean $\\pm$ std). Best mean F1 in bold. Significance markers for QMI-CFS vs. baseline: $^{{*}}p<0.05$, $^{{**}}p<0.01$, $^{{***}}p<0.001$. Gray markers indicate baselines significantly better than QMI-CFS.}}
+\\caption{{Feature selection accuracy (F1 score, mean $\\pm$ std). Best mean F1 in bold. Significance markers for QMI-CFS vs. baseline: $^{{*}}p<0.05$, $^{{**}}p<0.01$, $^{{***}}p<0.001$ (paired $t$-test over 50 replications, Holm--Bonferroni-corrected within each dataset); unmarked differences are not significant. Gray entries are baselines significantly better than QMI-CFS.}}
 \\label{{tab:f1}}
 \\footnotesize
 \\setlength{{\\tabcolsep}}{{2pt}}
@@ -99,7 +99,7 @@ def generate_table2_f1(df_exp1, ttest_df):
             else:
                 cell = f"${val_str}$"
             sig = sig_map.get((ds, m), '')
-            if sig:
+            if sig and sig != 'ns':
                 sub = ttest_df[(ttest_df['dataset'] == ds) & (ttest_df['method'] == m)]
                 if not sub.empty:
                     mean_diff = sub['mean_diff'].values[0]
@@ -222,8 +222,12 @@ def generate_table4_small_sample(df_exp3):
     return latex
 
 
-def generate_table5_ihdp(df_ihdp):
-    """Table 5: IHDP results."""
+def generate_table5_ihdp(df_ihdp, wilcoxon_ate=None):
+    """Table 5: IHDP-inspired synthetic benchmark results.
+
+    If ``wilcoxon_ate`` is given, ATE errors of baselines that differ
+    significantly from QMI-CFS (Holm-corrected Wilcoxon) are starred.
+    """
     summary = df_ihdp.groupby('method').agg({
         'f1': ['mean', 'std'],
         'precision': ['mean', 'std'],
@@ -232,17 +236,23 @@ def generate_table5_ihdp(df_ihdp):
     }).reset_index()
     summary.columns = ['method', 'f1_mean', 'f1_std', 'p_mean', 'p_std',
                        'r_mean', 'r_std', 'a_mean', 'a_std']
-    method_order = ['QMI-CFS', 'Boruta', 'CMI', 'LASSO', 'MI',
-                    'All-Features']
+    method_order = ['QMI-CFS', 'HSIC-Med', 'HSIC-CV', 'HSIC-Lasso', 'CMI',
+                    'MI', 'LASSO', 'Boruta', 'RF', 'All-Features']
+
+    sig_map = {}
+    if wilcoxon_ate is not None:
+        for _, row in wilcoxon_ate.iterrows():
+            sig_map[row['method']] = row['significance']
 
     latex = r"""\begin{table}[htbp]
 \centering
-\caption{IHDP Setting A results ($n=747$, true ATE = 4.0). Best mean ATE error and best mean F1 in bold.}
+\caption{IHDP-inspired synthetic benchmark ($n=747$, $d=25$, true ATE = 4.0; covariates are simulated to mimic IHDP, not taken from the original study). Mean $\pm$ std over 30 replications; best mean in bold. $^{*}$: ATE error differs significantly from QMI-CFS (paired Wilcoxon, Holm-corrected; $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$); unmarked differences are not significant.}
 \label{tab:ihdp}
 \small
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
 \hline
-\rule{0pt}{12pt}Method & \multicolumn{1}{l}{F1} & \multicolumn{1}{l}{ATE Error} & Precision & Recall \\\\
+\rule{0pt}{12pt}Method & \multicolumn{1}{l}{F1} & \multicolumn{1}{l}{ATE Error} & Precision & Recall \\
 """
     best_f1 = summary['f1_mean'].max()
     best_ate = summary['a_mean'].min()
@@ -265,6 +275,9 @@ def generate_table5_ihdp(df_ihdp):
             f1_str = f"$\\mathbf{{{f1_m:.3f} \\pm {f1_s:.3f}}}$"
         if abs(a_m - best_ate) < 1e-9:
             ate_str = f"$\\mathbf{{{a_m:.3f} \\pm {a_s:.3f}}}$"
+        sig = sig_map.get(m, '')
+        if sig and sig != 'ns':
+            ate_str = ate_str[:-1] + f"^{{{sig}}}$"
 
         latex += f"\\rule{{0pt}}{{12pt}}{m} & {f1_str} & {ate_str} & ${p_m:.3f} \\pm {p_s:.3f}$ & ${r_m:.3f} \\pm {r_s:.3f}$ \\\\\n"
     latex += """\\hline
@@ -350,6 +363,7 @@ def main():
     df_exp2_nl = pd.read_csv('results/exp2_nonlinear/experiment2_results.csv')
     df_exp3 = pd.read_csv('results/experiment3/experiment3_results.csv')
     df_ihdp = pd.read_csv('results/ihdp/ihdp_results.csv')
+    wilcoxon_ihdp_ate = pd.read_csv('results/ihdp/ihdp_wilcoxon_ate_error.csv')
     df_abl = pd.read_csv('results/ablation/ablation_results.csv')
 
     tables = {
@@ -357,7 +371,7 @@ def main():
         'table2_f1.txt': generate_table2_f1(df_exp1, ttest_df),
         'table3_ate.txt': generate_table3_ate(df_exp2),
         'table4_small_sample.txt': generate_table4_small_sample(df_exp3),
-        'table5_ihdp.txt': generate_table5_ihdp(df_ihdp),
+        'table5_ihdp.txt': generate_table5_ihdp(df_ihdp, wilcoxon_ihdp_ate),
         'table6_ablation.txt': generate_table6_ablation(df_abl),
         'table7_ic_ate.txt': generate_table7_ic_ate(df_exp2, df_exp2_nl),
     }

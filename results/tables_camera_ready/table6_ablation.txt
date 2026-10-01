@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Ablation study: Mean F1 score (mean $\pm$ std) across QMI-CFS variants.}
+\label{tab:ablation}
+\small
+\begin{tabular}{lccccc}
+\hline
+\rule{0pt}{12pt}Dataset & Full & No Bootstrap & No Pairwise & Conservative & Precision \\
+\rule{0pt}{12pt}LLD & $0.680 \pm 0.065$ & $0.571 \pm 0.000$ & $0.693 \pm 0.067$ & $0.692 \pm 0.068$ & $0.655 \pm 0.084$ \\[2pt]
+\rule{0pt}{12pt}NLC & $0.388 \pm 0.095$ & $0.386 \pm 0.088$ & $0.398 \pm 0.091$ & $0.392 \pm 0.088$ & $0.387 \pm 0.100$ \\[2pt]
+\rule{0pt}{12pt}HDS & $0.250 \pm 0.031$ & $0.178 \pm 0.011$ & $0.260 \pm 0.030$ & $0.251 \pm 0.032$ & $0.241 \pm 0.037$ \\[2pt]
+\rule{0pt}{12pt}CC & $0.628 \pm 0.106$ & $0.635 \pm 0.090$ & $0.662 \pm 0.076$ & $0.632 \pm 0.103$ & $0.587 \pm 0.132$ \\[2pt]
+\rule{0pt}{12pt}WC & $0.278 \pm 0.145$ & $0.345 \pm 0.129$ & $0.263 \pm 0.161$ & $0.282 \pm 0.136$ & $0.256 \pm 0.141$ \\[2pt]
+\rule{0pt}{12pt}IC & $0.305 \pm 0.173$ & $0.375 \pm 0.116$ & $0.319 \pm 0.152$ & $0.307 \pm 0.177$ & $0.324 \pm 0.152$ \\[2pt]
+\hline
+\end{tabular}
+\end{table}

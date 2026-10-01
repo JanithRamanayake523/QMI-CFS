@@ -1,0 +1,18 @@
+\begin{table*}[tbp]
+\centering
+\caption{ATE estimation error (mean $\pm$ std). Lowest mean error in bold.}
+\label{tab:ate}
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lcccccc}
+\hline
+\rule{0pt}{12pt}Dataset & QMI-CFS & MI & LASSO & Boruta & CMI & All-Features \\
+\rule{0pt}{12pt}LLD & $0.122 \pm 0.112$ & $0.591 \pm 0.292$ & $\mathbf{0.078 \pm 0.075}$ & $0.128 \pm 0.103$ & $0.384 \pm 0.268$ & $0.078 \pm 0.075$ \\[2pt]
+\rule{0pt}{12pt}NLC & $0.195 \pm 0.166$ & $0.166 \pm 0.140$ & $0.177 \pm 0.166$ & $\mathbf{0.162 \pm 0.140}$ & $0.176 \pm 0.139$ & $0.186 \pm 0.187$ \\[2pt]
+\rule{0pt}{12pt}HDS & $0.124 \pm 0.100$ & $0.434 \pm 0.214$ & $0.109 \pm 0.079$ & $0.163 \pm 0.154$ & $0.287 \pm 0.216$ & $\mathbf{0.105 \pm 0.067}$ \\[2pt]
+\rule{0pt}{12pt}CC & $0.223 \pm 0.189$ & $0.280 \pm 0.212$ & $\mathbf{0.103 \pm 0.083}$ & $0.207 \pm 0.130$ & $0.151 \pm 0.115$ & $0.103 \pm 0.082$ \\[2pt]
+\rule{0pt}{12pt}WC & $0.109 \pm 0.084$ & $0.112 \pm 0.075$ & $\mathbf{0.071 \pm 0.067}$ & $0.106 \pm 0.075$ & $0.104 \pm 0.067$ & $0.071 \pm 0.066$ \\[2pt]
+\rule{0pt}{12pt}IC & $2.027 \pm 0.207$ & $2.021 \pm 0.207$ & $2.021 \pm 0.217$ & $2.026 \pm 0.208$ & $2.024 \pm 0.211$ & $\mathbf{2.019 \pm 0.213}$ \\[2pt]
+\hline
+\end{tabular}
+\end{table*}

@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{IHDP-inspired synthetic benchmark ($n=747$, $d=25$, true ATE = 4.0; covariates are simulated to mimic IHDP, not taken from the original study). Mean $\pm$ std over 30 replications; best mean in bold. $^{*}$: ATE error differs significantly from QMI-CFS (paired Wilcoxon, Holm-corrected; $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$); unmarked differences are not significant.}
+\label{tab:ihdp}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccc}
+\hline
+\rule{0pt}{12pt}Method & \multicolumn{1}{l}{F1} & \multicolumn{1}{l}{ATE Error} & Precision & Recall \\
+\rule{0pt}{12pt}QMI-CFS & $0.511 \pm 0.056$ & $\mathbf{0.057 \pm 0.047}$ & $0.345 \pm 0.053$ & $1.000 \pm 0.000$ \\
+\rule{0pt}{12pt}HSIC-Med & $0.733 \pm 0.184$ & $0.147 \pm 0.110^{**}$ & $0.733 \pm 0.184$ & $0.733 \pm 0.184$ \\
+\rule{0pt}{12pt}HSIC-CV & $0.822 \pm 0.190$ & $0.121 \pm 0.080^{**}$ & $0.822 \pm 0.190$ & $0.822 \pm 0.190$ \\
+\rule{0pt}{12pt}HSIC-Lasso & $\mathbf{1.000 \pm 0.000}$ & $0.061 \pm 0.053$ & $1.000 \pm 0.000$ & $1.000 \pm 0.000$ \\
+\rule{0pt}{12pt}CMI & $0.956 \pm 0.115$ & $0.063 \pm 0.053$ & $0.956 \pm 0.115$ & $0.956 \pm 0.115$ \\
+\rule{0pt}{12pt}MI & $0.433 \pm 0.265$ & $0.234 \pm 0.175^{***}$ & $0.433 \pm 0.265$ & $0.433 \pm 0.265$ \\
+\rule{0pt}{12pt}LASSO & $0.530 \pm 0.160$ & $0.060 \pm 0.048$ & $0.376 \pm 0.150$ & $1.000 \pm 0.000$ \\
+\rule{0pt}{12pt}Boruta & $0.400 \pm 0.169$ & $0.215 \pm 0.149^{***}$ & $0.300 \pm 0.127$ & $0.600 \pm 0.254$ \\
+\rule{0pt}{12pt}RF & $0.878 \pm 0.163$ & $0.064 \pm 0.060$ & $0.878 \pm 0.163$ & $0.878 \pm 0.163$ \\
+\rule{0pt}{12pt}All-Features & $0.214 \pm 0.000$ & $0.063 \pm 0.051^{*}$ & $0.120 \pm 0.000$ & $1.000 \pm 0.000$ \\
+\hline
+\end{tabular}
+\end{table}

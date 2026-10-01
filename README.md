@@ -2,7 +2,7 @@
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Manuscript](https://img.shields.io/badge/manuscript-under%20review-orange.svg)](paper/paper.tex)
+[![Manuscript](https://img.shields.io/badge/manuscript-under%20review-orange.svg)](paper/final_submission/paper_ccis_20p.tex)
 
 > **An empirical study of feature recovery and treatment effect estimation using quantum-inspired dependency measures.**
 
@@ -26,7 +26,7 @@ This repository accompanies the manuscript:
 
 Submitted to the **International Conference on ICTer 2026** — currently under review.
 
-The LaTeX source is in [`paper/`](paper/) and is ready for Overleaf upload.
+The LaTeX source of the final submission is in [`paper/final_submission/`](paper/final_submission/) and is ready for Overleaf upload; earlier versions are kept in [`paper/archive/`](paper/archive/).
 
 ---
 
@@ -41,7 +41,7 @@ The LaTeX source is in [`paper/`](paper/) and is ready for Overleaf upload.
 Selected features are fed into a doubly-robust AIPW estimator for the Average Treatment Effect (ATE).
 
 <p align="center">
-  <img src="paper/figures/Pipeline.png" alt="QMI-CFS pipeline" width="90%">
+  <img src="paper/final_submission/figures/Pipeline.png" alt="QMI-CFS pipeline" width="90%">
 </p>
 
 ---
@@ -54,7 +54,7 @@ qmi_cfs_project/
 ├── scripts/              # Experiment runners & paper-asset generators
 ├── tests/                # Integration tests
 ├── results/              # Final experimental CSVs
-├── paper/                # Springer SVProc manuscript source
+├── paper/                # final_submission/ (CCIS manuscript) and archive/ (earlier versions)
 │   ├── paper.tex
 │   ├── svproc.cls
 │   ├── figures/          # Final paper figures
@@ -132,7 +132,7 @@ python scripts/regenerate_paper_figures.py
 
 ### 3. Compile the paper
 
-Upload the entire [`paper/`](paper/) folder to Overleaf and compile with **pdfLaTeX**.
+Upload the entire [`paper/final_submission/`](paper/final_submission/) folder to Overleaf and compile with **pdfLaTeX**.
 
 ---
 
@@ -143,7 +143,7 @@ Upload the entire [`paper/`](paper/) folder to Overleaf and compile with **pdfLa
 Across the six synthetic DGPs, F1 score explains only about **4%** of the variance in ATE error, and the correlation is not statistically significant.
 
 <p align="center">
-  <img src="paper/figures/v5_f1_vs_ate_by_dataset.png" alt="F1 vs ATE by dataset" width="90%">
+  <img src="paper/archive/figures/v5_f1_vs_ate_by_dataset.png" alt="F1 vs ATE by dataset" width="90%">
 </p>
 
 ### IHDP benchmark
@@ -151,7 +151,7 @@ Across the six synthetic DGPs, F1 score explains only about **4%** of the varian
 On IHDP Setting A, QMI-CFS achieves the **lowest ATE error** despite only moderate F1, demonstrating that a feature set with lower recovery accuracy can still yield better causal estimates when it is well-calibrated for the downstream nuisance models.
 
 <p align="center">
-  <img src="paper/figures/v5_ihdp_combined.png" alt="IHDP combined figure" width="90%">
+  <img src="paper/archive/figures/v5_ihdp_combined.png" alt="IHDP combined figure" width="90%">
 </p>
 
 ### Interacting confounders
