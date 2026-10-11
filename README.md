@@ -2,7 +2,7 @@
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Manuscript](https://img.shields.io/badge/manuscript-under%20review-orange.svg)](paper/final_submission/paper_ccis_20p.tex)
+[![Manuscript](https://img.shields.io/badge/manuscript-forthcoming-orange.svg)](#-manuscript)
 
 > **An empirical study of feature recovery and treatment effect estimation using quantum-inspired dependency measures.**
 
@@ -24,9 +24,9 @@ This repository accompanies the manuscript:
 
 > **Quantum Mutual Information for Causal Feature Selection: An Empirical Study of Feature Recovery and Treatment Effect Estimation**
 
-Submitted to the **International Conference on ICTer 2026** — currently under review.
+The manuscript has been accepted for publication in a Springer CCIS proceedings volume. In line with the publisher's policy, the paper itself (PDF and LaTeX source) is **not** distributed in this repository until it is officially published. A citation entry and link will be added here after publication.
 
-The LaTeX source of the final submission is in [`paper/final_submission/`](paper/final_submission/) and is ready for Overleaf upload; earlier versions are kept in [`paper/archive/`](paper/archive/).
+The code, experiment results (`results/`), and result tables used in the paper are available here so every reported number can be reproduced.
 
 ---
 
@@ -40,25 +40,18 @@ The LaTeX source of the final submission is in [`paper/final_submission/`](paper
 
 Selected features are fed into a doubly-robust AIPW estimator for the Average Treatment Effect (ATE).
 
-<p align="center">
-  <img src="paper/final_submission/figures/Pipeline.png" alt="QMI-CFS pipeline" width="90%">
-</p>
 
 ---
 
 ## 📁 Repository Structure
 
 ```text
-qmi_cfs_project/
+QMI-CFS/
 ├── qmi_cfs/              # Core Python package
-├── scripts/              # Experiment runners & paper-asset generators
+├── scripts/              # Experiment runners & table/figure generators
 ├── tests/                # Integration tests
-├── results/              # Final experimental CSVs
-├── paper/                # final_submission/ (CCIS manuscript) and archive/ (earlier versions)
-│   ├── paper.tex
-│   ├── svproc.cls
-│   ├── figures/          # Final paper figures
-│   └── tables/           # Generated LaTeX tables
+├── results/              # Experimental CSV/JSON outputs, plots, and camera-ready tables
+├── CITATION.cff
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
@@ -70,7 +63,6 @@ qmi_cfs_project/
 ## 🛠️ Installation
 
 ```bash
-cd qmi_cfs_project
 pip install -e .
 ```
 
@@ -117,11 +109,11 @@ python scripts/run_ablation_study.py --output results/ablation
 
 ```bash
 # LaTeX tables
-python scripts/generate_tables.py --output paper/tables
+python scripts/generate_tables.py --output results/tables
 
 # Main figures
-python scripts/generate_figures.py --output paper/figures
-python scripts/generate_ic_figure.py --output paper/figures
+python scripts/generate_figures.py --output results/figures
+python scripts/generate_ic_figure.py --output results/figures
 ```
 
 Or regenerate all figures directly from the CSVs:
@@ -130,9 +122,9 @@ Or regenerate all figures directly from the CSVs:
 python scripts/regenerate_paper_figures.py
 ```
 
-### 3. Compile the paper
+The camera-ready tables used in the paper are stored in [`results/tables_camera_ready/`](results/tables_camera_ready/).
 
-Upload the entire [`paper/final_submission/`](paper/final_submission/) folder to Overleaf and compile with **pdfLaTeX**.
+> The manuscript sources are intentionally excluded from this repository (publisher embargo); `paper/` is git-ignored.
 
 ---
 
@@ -143,16 +135,12 @@ Upload the entire [`paper/final_submission/`](paper/final_submission/) folder to
 Across the six synthetic DGPs, F1 score explains only about **4%** of the variance in ATE error, and the correlation is not statistically significant.
 
 <p align="center">
-  <img src="paper/archive/figures/v5_f1_vs_ate_by_dataset.png" alt="F1 vs ATE by dataset" width="90%">
+  <img src="results/experiment2/experiment2_ate_error_plot.png" alt="ATE error by method" width="90%">
 </p>
 
 ### IHDP benchmark
 
 On IHDP Setting A, QMI-CFS achieves the **lowest ATE error** despite only moderate F1, demonstrating that a feature set with lower recovery accuracy can still yield better causal estimates when it is well-calibrated for the downstream nuisance models.
-
-<p align="center">
-  <img src="paper/archive/figures/v5_ihdp_combined.png" alt="IHDP combined figure" width="90%">
-</p>
 
 ### Interacting confounders
 
@@ -178,18 +166,7 @@ This repository was produced for a research manuscript. If you use or extend QMI
 
 ## 📚 Citation
 
-If you use this code or the QMI-CFS method in your research, please cite the paper once it is accepted and published. Until then, you can reference the manuscript as:
-
-```bibtex
-@unpublished{qmi_cfs_2026,
-  title={Quantum Mutual Information for Causal Feature Selection: An Empirical Study of Feature Recovery and Treatment Effect Estimation},
-  author={Anonymous Research Team},
-  note={Submitted to the International Conference on ICTer 2026, under review},
-  year={2026}
-}
-```
-
-> Replace the placeholder author line with the final paper metadata once available.
+If you use this code or the QMI-CFS method in your research, please cite the paper once it is published (see [`CITATION.cff`](CITATION.cff)). The reference and DOI will be added here after publication.
 
 ---
 
